@@ -29,8 +29,8 @@ namespace BethanysPieShop
             // register services here through Dependency Injection
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
-            services.AddScoped<IPieRepository, MockPieRepository>();
-            services.AddScoped<ICategoryRepository, MockCategoryRepository>();
+            services.AddScoped<IPieRepository, PieRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             //services.AddTransient
             //services.AddSingleton
             services.AddControllersWithViews();
