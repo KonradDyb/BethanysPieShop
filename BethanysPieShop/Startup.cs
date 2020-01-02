@@ -47,8 +47,11 @@ namespace BethanysPieShop
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
+            app.UseRouting(); // enable mvc routing in our app
 
+            // accepts a collection of endpoints. Endpoints are really things that we are going to 
+            // be navigate to. In our case, we are going to be navigating to actions on controller
+            // methods.
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
