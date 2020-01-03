@@ -31,6 +31,9 @@ namespace BethanysPieShop
             options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
             services.AddScoped<IPieRepository, PieRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
+            services.AddHttpContextAccessor();
+            services.AddSession();
             //services.AddTransient
             //services.AddSingleton
             services.AddControllersWithViews();
@@ -46,7 +49,8 @@ namespace BethanysPieShop
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
+            // Use Session should be before UseRouting !! 
             app.UseRouting(); // enable mvc routing in our app
 
             // accepts a collection of endpoints. Endpoints are really things that we are going to 
